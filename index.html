@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IOT Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./css/mdb.css">
+  <link rel="stylesheet" href="./css/font-awesome.css">
+  <link rel="icon" href="./img/logo.png">
+  <link rel="stylesheet" href="./css/morphDash.css">
+</head>
+<body class="dark-edition">
+  <div class="wrapper">
+    <div class="sidebar" data-color="purple" data-background-color="black">
+      <div class="logo">
+        <center>
+          <img src="./img/logo.png" style="width: 70px" />
+        </center>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link">
+              <i class="fa fa-th"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" id="cpage">IOT Dashboard</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="content">
+        <div class="container-fluid" id="dashboard">
+          <div class="row">
+
+            <!-- Temperature -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <span class="text-heading">🌡️ Temperature</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="temp">0</span> ℃</h1></center>
+                </div>
+              </div>
+            </div>
+
+            <!-- Humidity -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <span class="text-heading">💧 Humidity</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="hum">0</span> %</h1></center>
+                </div>
+              </div>
+            </div>
+
+            <!-- Soil Moisture -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <span class="text-heading">🌱 Soil Moisture</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="moisture">0</span></h1></center>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pump Status -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <span class="text-heading">💦 Pump Status</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="pump">OFF</span></h1></center>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6LYRpOKBZRjUCNEUlt7EgF0Ov9v4UdV8",
+      authDomain: "iot-project-ed4c8.firebaseapp.com",
+      databaseURL: "https://iot-project-ed4c8-default-rtdb.firebaseio.com",
+      projectId: "iot-project-ed4c8",
+      storageBucket: "iot-project-ed4c8.appspot.com",
+      messagingSenderId: "173949452828",
+      appId: "1:173949452828:web:4de878a640e1edbe59d5d9"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function updateSensor(id, path, suffix = '') {
+      db.ref(path).on('value', snapshot => {
+        document.getElementById(id).innerText = snapshot.val() + suffix;
+      });
+    }
+
+    updateSensor('temp', '/temperature', ' ℃');
+    updateSensor('hum', '/humidity', ' %');
+    updateSensor('moisture', '/soil_moisture');
+    updateSensor('pump', '/pump_status');
+  </script>
+</body>
+</html>
