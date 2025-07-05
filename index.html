@@ -49,7 +49,7 @@
                   <span class="text-heading">🌡️ Temperature</span>
                 </div>
                 <div class="card-body">
-                  <center><h1><span id="temp">0</span> ℃</h1></center>
+                  <center><h1><span id="temp">Loading...</span> ℃</h1></center>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   <span class="text-heading">💧 Humidity</span>
                 </div>
                 <div class="card-body">
-                  <center><h1><span id="hum">0</span> %</h1></center>
+                  <center><h1><span id="hum">Loading...</span> %</h1></center>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@
                   <span class="text-heading">🌱 Soil Moisture</span>
                 </div>
                 <div class="card-body">
-                  <center><h1><span id="moisture">0</span></h1></center>
+                  <center><h1><span id="moisture">Loading...</span></h1></center>
                 </div>
               </div>
             </div>
@@ -85,7 +85,19 @@
                   <span class="text-heading">💦 Pump Status</span>
                 </div>
                 <div class="card-body">
-                  <center><h1><span id="pump">OFF</span></h1></center>
+                  <center><h1><span id="pump">Loading...</span></h1></center>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Status -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <span class="text-heading">🚨 Security Status</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="alarm">Loading...</span></h1></center>
                 </div>
               </div>
             </div>
@@ -123,6 +135,7 @@
     updateSensor('hum', '/humidity', ' %');
     updateSensor('moisture', '/soil_moisture');
     updateSensor('pump', '/pump_status');
+    updateSensor('alarm', '/Security_status'); // ✅ Now included
   </script>
 </body>
 </html>

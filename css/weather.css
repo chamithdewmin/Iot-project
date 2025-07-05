@@ -1,0 +1,21 @@
+.weather-bar {
+  background-color: #1e1e1e;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  margin-bottom: 20px;
+}
+.weather-bar img {
+  vertical-align: middle;
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+}
+.weather-bar span {
+  margin: 0 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
