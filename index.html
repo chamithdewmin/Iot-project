@@ -102,6 +102,18 @@
               </div>
             </div>
 
+            <!-- Rain Status -->
+            <div class="col-xl-6 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <span class="text-heading">🌧 Rain Status</span>
+                </div>
+                <div class="card-body">
+                  <center><h1><span id="rain">Loading...</span></h1></center>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -135,7 +147,8 @@
     updateSensor('hum', '/humidity', ' %');
     updateSensor('moisture', '/soil_moisture');
     updateSensor('pump', '/pump_status');
-    updateSensor('alarm', '/Security_status'); // ✅ Now included
+    updateSensor('alarm', '/Security_status');
+    updateSensor('rain', '/rain_status'); // ✅ NEW: Rain Status
   </script>
 </body>
 </html>
