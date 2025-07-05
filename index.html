@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="./css/font-awesome.css">
   <link rel="icon" href="./img/logo.png">
   <link rel="stylesheet" href="./css/morphDash.css">
+  <style>
+    .btn-group-center {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .btn-group .btn {
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body class="dark-edition">
   <div class="wrapper">
@@ -114,6 +124,24 @@
               </div>
             </div>
 
+            <!-- Manual Pump Control -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <span class="text-heading">🕹 Manual Pump Control</span>
+                </div>
+                <div class="card-body">
+                  <div class="btn-group-center">
+                    <button class="btn btn-outline-success" onclick="setPumpMode('AUTO')">AUTO</button>
+                    <button class="btn btn-outline-primary" onclick="setPumpMode('ON')">OFF</button>
+                    <button class="btn btn-outline-danger" onclick="setPumpMode('OFF')">ON</button>
+                  </div>
+                  <br>
+                  <center><p>Current Mode: <strong><span id="manualMode">Loading...</span></strong></p></center>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -143,12 +171,19 @@
       });
     }
 
+    // Update display values
     updateSensor('temp', '/temperature', ' ℃');
     updateSensor('hum', '/humidity', ' %');
     updateSensor('moisture', '/soil_moisture');
     updateSensor('pump', '/pump_status');
     updateSensor('alarm', '/Security_status');
-    updateSensor('rain', '/rain_status'); // ✅ NEW: Rain Status
+    updateSensor('rain', '/rain_status');
+    updateSensor('manualMode', '/manual_pump');
+
+    // Set manual pump mode
+    function setPumpMode(mode) {
+      db.ref('/manual_pump').set(mode);
+    }
   </script>
 </body>
 </html>
